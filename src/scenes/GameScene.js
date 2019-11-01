@@ -31,7 +31,7 @@ class GameScene extends Phaser.Scene{
         event = this.time.addEvent({
             delay : 2000,
             callback : function(){
-                thunder = this.physics.add.sprite(Phaser.Math.Between(100,200),20,'Thunder').setScale(0.1)
+                thunder = this.physics.add.sprite(Phaser.Math.Between(0,900),20,'Thunder').setScale(0.1)
                 thunderGroup.add(thunder)
                 thunderGroup.setVelocityY(200)
             },
