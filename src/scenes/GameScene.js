@@ -27,7 +27,7 @@ class GameScene extends Phaser.Scene{
         keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
         
         thunderGroup = this.physics.add.group();
-        
+        this.physics.add.collider(player,thunderGroup,function(){console.log('test')})
         event = this.time.addEvent({
             delay : 2000,
             callback : function(){
