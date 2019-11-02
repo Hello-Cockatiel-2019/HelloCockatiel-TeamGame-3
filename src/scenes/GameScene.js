@@ -1,7 +1,6 @@
 let keyW,keyA,keyS,keyD
 let player
 let cloud
-let bg
 let thunder
 let thunderGroup
 class GameScene extends Phaser.Scene{
@@ -46,12 +45,7 @@ class GameScene extends Phaser.Scene{
     }
 
     update(){
-                
-        for(let i = 0;i < thunderGroup.getLength();i++){
-            let thun = thunderGroup.getChildren()[i]
-            if(thunder.y <= -50){
-                thunder.destroy(true)
-        bg.tilePositionX -= 1
+        
         {
             if (keyA.isDown) {
                 player.setVelocityX(-400)
@@ -67,9 +61,14 @@ class GameScene extends Phaser.Scene{
             if (keyW.isDown) {
                 player.setVelocityY(-400)
             }
-        }
+        }        
+        for(let i = 0;i < thunderGroup.getLength();i++){
+            let thun = thunderGroup.getChildren()[i]
+            if(thunder.y <= -50){
+                thunder.destroy(true)
+        
     }
-}
+        }
     }
 
 }
