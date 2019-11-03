@@ -2,7 +2,11 @@ var background
 var platforms
 let keyW,keyA,keyS,keyD
 let player
+<<<<<<< HEAD
 let tree
+=======
+let keySpace
+>>>>>>> Dlz
 class GameScene extends Phaser.Scene{
 
     constructor(){
@@ -12,10 +16,14 @@ class GameScene extends Phaser.Scene{
     }
 
     preload(){
+<<<<<<< HEAD
             this.load.image('tree','images/tree.jpg')
             this.load.image('sky','images/sky.jpg')
             this.load.image('platform','images/platform.png')
             this.load.image('Player','../../images/Gokuตัดเองจ้า.png',{frameWidth :384 ,frameHeight:216})
+=======
+            this.load.image('player','../images/nong.png',)
+>>>>>>> Dlz
     }
     
     create(){
@@ -28,7 +36,11 @@ class GameScene extends Phaser.Scene{
         keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
         keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+<<<<<<< HEAD
         this.physics.add.collider(player,platforms);
+=======
+        //keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACEBAR);
+>>>>>>> Dlz
     }
 
     update(){
@@ -59,6 +71,10 @@ class GameScene extends Phaser.Scene{
             player.setVelocityY(0)
         }
     }
+        // if(keySpace.isDown){
+
+        // }
+
     }
 }
 export default GameScene
