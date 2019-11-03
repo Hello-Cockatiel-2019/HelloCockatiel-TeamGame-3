@@ -2,6 +2,7 @@ var background
 var platforms
 let keyW,keyA,keyS,keyD
 let player
+let keySpace
 class GameScene extends Phaser.Scene{
 
     constructor(){
@@ -11,7 +12,7 @@ class GameScene extends Phaser.Scene{
     }
 
     preload(){
-            this.load.image('player','../images/Gokuตัดเองจ้า.png')
+            this.load.image('player','../images/nong.png',)
     }
     
     create(){
@@ -21,7 +22,7 @@ class GameScene extends Phaser.Scene{
         keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
         keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
-
+        //keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACEBAR);
     }
 
     update(){
@@ -43,6 +44,10 @@ class GameScene extends Phaser.Scene{
             player.setVelocityY(0)
         }
     }
+        // if(keySpace.isDown){
 
+        // }
+
+    }
 }
 export default GameScene
