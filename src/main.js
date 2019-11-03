@@ -1,7 +1,8 @@
 import 'phaser';
 import GameScene from './scenes/GameScene';
-
-
+import PreloadScene from './scenes/PreloadScene';
+import ToturialScene from './scenes/ToturialScene';
+import GameOverScene from './scenes/GameOverScene';
 const config = {
     // For more settings see <https://github.com/photonstorm/phaser/blob/master/src/boot/Config.js>
     type: Phaser.WEBGL,
@@ -18,7 +19,7 @@ const config = {
         }
     },
     scene: [
-        GameScene
+        PreloadScene,ToturialScene,GameScene,GameOverScene
     ]
 };
 
