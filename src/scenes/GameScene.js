@@ -21,7 +21,6 @@ class GameScene extends Phaser.Scene{
             this.load.image('sky','images/sky.jpg');
             this.load.image('platform','images/platform.png')
             this.load.image('Player','../../images/Gokuตัดเองจ้า.png',{frameWidth :384 ,frameHeight:216})
-            // this.load.image('Cloud','../../images/Cloud.png')
             this.load.image('Lightning','../../images/lightning.png')
 
     }
@@ -29,7 +28,6 @@ class GameScene extends Phaser.Scene{
     create(){
         platforms = this.physics.add.image(0,0,'platform').setOrigin(0.5).setScale(1).setSize(1800,250).setCollideWorldBounds(true);
         background = this.add.image(0,0,'sky').setOrigin(0).setScale(1)
-        // cloud = this.physics.add.image(-100,-750,'Cloud').setOrigin(0,0).setScale(0.7).setSize(0.2)
         player = this.physics.add.image(384,216,'Player').setSize(800,600).setScale(0.2).setCollideWorldBounds(true);
         keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
         keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
@@ -40,7 +38,7 @@ class GameScene extends Phaser.Scene{
         lightningGroup = this.physics.add.group();
         this.physics.add.collider(player,lightningGroup,function(){console.log('test')})
         event = this.time.addEvent({
-            delay : 2000,
+            delay : 1500,
             callback : function(){
                 lightning = this.physics.add.sprite(Phaser.Math.Between(0,900),20,'Lightning').setScale(0.1)
                 lightningGroup.add(lightning)
