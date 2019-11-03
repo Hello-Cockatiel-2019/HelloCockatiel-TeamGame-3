@@ -59,3 +59,11 @@ typings/
 
 # next.js build output
 .next
+
+dev/vendor.js
+
+dev/app.js.map
+
+dev/app.js
+
+dev/
