@@ -9,6 +9,8 @@ let lightning
 let lightningGroup
 let thunder
 let thunderGroup
+let keySpacebar
+let trees
 class GameScene extends Phaser.Scene{
 
     constructor(){
@@ -23,6 +25,7 @@ class GameScene extends Phaser.Scene{
             this.load.image('Player','../../images/nong.png',{frameWidth :384 ,frameHeight:216})
             this.load.image('Lightning','../../images/lightning.png')
             this.load.image('Thunder','../../images/thunder.png')
+            this.load.image('tree','../../images/tree2.png')
 
     }
     
@@ -38,6 +41,10 @@ class GameScene extends Phaser.Scene{
         keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
         keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+        
+        trees = this.physics.add.group();
+        keySpacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        
         this.physics.add.collider(player,platforms);
         lightningGroup = this.physics.add.group();
         this.physics.add.collider(player,lightningGroup,function(){console.log('test')})
@@ -55,7 +62,6 @@ class GameScene extends Phaser.Scene{
             
             
         })
-
     }
 
     update(){
@@ -73,7 +79,16 @@ class GameScene extends Phaser.Scene{
             }
             if (keyW.isDown) {
                 player.setVelocityY(-400)
+            }if(keySpacebar.isDown){
+                this.TREE()
+                for(let i = 0; i< trees.getLength(); i++){
+                    let tre = trees.getChildren()[i]
+                    if(tre.x < -50 ){
+                        tre.destroy(true)
+                    }
+                }
             }
+
         }
         for(let i = 0;i < lightningGroup.getLength();i++){
             let thun = lightningGroup.getChildren()[i]
@@ -82,6 +97,18 @@ class GameScene extends Phaser.Scene{
             }
         }
     }
-
-}
+        TREE() {
+            event = this.time.addEvent({
+                
+                callback: function () {
+                    let tree = this.physics.add.image(player.x + 60, player.y - 50, 'tree')
+                    tree.setScale(1).setSize(0.2).setOff
+                    trees.add(tree)
+                },
+                callbackScope: this,
+                loop:false,
+                pause: false  
+            })
+        }
+    }
 export default GameScene
