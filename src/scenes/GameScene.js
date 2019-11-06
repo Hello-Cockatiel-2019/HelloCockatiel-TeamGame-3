@@ -9,6 +9,7 @@ let thunderGroup
 let keySpacebar
 let trees
 
+
 class GameScene extends Phaser.Scene{
 
     constructor(){
@@ -25,9 +26,30 @@ class GameScene extends Phaser.Scene{
             this.load.image('player','../../images/nong.png',{frameWidth :384 ,frameHeight:216})
             this.load.image('Lightning','../../images/lightning.png')
             this.load.image('Thunder','../../images/Thunder.png')
+            this.load.audio("gametheme",["../../images/gametheme.mp3",])
+            this.load.audio("grownplant","../../images/grownplant.mp3")
+            this.load.audio("deadplant","../../images/deadplant.mp3")
+            this.load.audio("stepsound","../../images/stepsound.mp3")
+            this.load.audio("thundersound","../../images/thunder.ogg")
 }
     
     create(){
+        this.gametheme = this.sound.add("gametheme");
+        this.grownplant = this.sound.add("grownplant")
+        this.deadplant = this.sound.add("deadplant")
+        this.stepsound = this.sound.add("stepsound")
+        this.thundersound = this.sound.add("thundersound")
+        var musicConfig = {
+            mute : false,
+            volume : 1,
+            rate : 1,
+            detune : 0,
+            loop : true,
+            delay : 0
+        }
+        this.gametheme.play(musicConfig);
+
+
         platforms = this.physics.add.image(0,0,'platform').setOrigin(0.5).setScale(1).setSize(1800,250).setCollideWorldBounds(true);
         background = this.add.image(0,0,'sky').setOrigin(0).setScale(1)
         player = this.physics.add.image(384,400,'player').setSize(500,600).setScale(0.2).setCollideWorldBounds(true);
@@ -52,6 +74,7 @@ class GameScene extends Phaser.Scene{
             callback : function(){
                 lightning = this.physics.add.sprite(Phaser.Math.Between(0,900),20,'Lightning').setScale(0.1)
                 lightningGroup.add(lightning)
+                this.thundersound.play()
                 lightningGroup.setVelocityY(200)
             },
             callbackScope : this,
@@ -70,19 +93,24 @@ class GameScene extends Phaser.Scene{
     update(){
         if (keyA.isDown) {
             player.setVelocityX(-400)
+            this.stepsound.play()
 
         } else if (keyD.isDown) {
             player.setVelocityX(400)
+            this.stepsound.play()
 
         } else  {
             player.setVelocityX(0)
         }
         if (keyW.isDown) {
             player.setVelocityY(-400)
+            this.stepsound.play()
         }else if (keyS.isDown) {
             player.setVelocityY(400)
+            this.stepsound.play()
         }else  {
             player.setVelocityY(0)
+            
         }        
          
        if(keySpacebar.isDown){
@@ -91,6 +119,7 @@ class GameScene extends Phaser.Scene{
                let tre = trees.getChildren()[i]
                if(tre.x < -50 ){
                    tre.destroy(true)
+                   this.deadplant.play();
                }
            }
        }
@@ -112,6 +141,7 @@ TREE()
                let tree = this.physics.add.image(player.x + 60, player.y - 50, 'tree')
                tree.setScale(1).setSize(100,200).setOff
                trees.add(tree)
+               this.grownplant.play();
            },
            callbackScope: this,
            loop:false,
