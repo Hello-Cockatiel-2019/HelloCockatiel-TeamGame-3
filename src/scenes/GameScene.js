@@ -12,7 +12,7 @@ let thunderGroup
 let keySpacebar
 let hole
 let trees
-let cout 
+let cout = 0;
 class GameScene extends Phaser.Scene {
 
     constructor() {
@@ -75,7 +75,9 @@ class GameScene extends Phaser.Scene {
     }
 
     update() {
-           
+           if (cout == 6){
+               this.scene.start('GameOverScene')
+           }
         {
             if (keyA.isDown) {
                 player.setVelocityX(-400)
