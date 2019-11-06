@@ -12,6 +12,7 @@ let thunderGroup
 let keySpacebar
 let hole
 let trees
+let cout 
 class GameScene extends Phaser.Scene {
 
     constructor() {
@@ -23,7 +24,7 @@ class GameScene extends Phaser.Scene {
     preload() {
         this.load.image('sky', 'images/sky.jpg');
         this.load.image('platform', 'images/platform.png')
-        this.load.spritesheet('Player', '../../images/RightWalk.png', { frameWidth: 105, frameHeight: 533 })
+        this.load.spritesheet('Player', '../../images/nong.png', { frameWidth: 293, frameHeight: 633 })
         this.load.image('Lightning', '../../images/lightning.png')
         this.load.image('Thunder', '../../images/thunder.png')
         this.load.image('Hole', '../../images/Hole.png')
@@ -47,15 +48,7 @@ class GameScene extends Phaser.Scene {
         keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
         keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
         
-        this.anims.create({
-            key : 'PlayerAni',
-            frames : this.anims.generateFrameNumbers('Player' , {
-                start : 0,
-                end : 3
-            }),
-            framerate : 10,
-            repeat : -1       
-        })
+      
         
 
         trees = this.physics.add.group();
@@ -82,8 +75,7 @@ class GameScene extends Phaser.Scene {
     }
 
     update() {
-        player.anims.play('PlayerAni',true)
-
+           
         {
             if (keyA.isDown) {
                 player.setVelocityX(-400)
@@ -99,6 +91,7 @@ class GameScene extends Phaser.Scene {
             if (keyW.isDown) {
                 player.setVelocityY(-400)
             } if (keySpacebar.isDown) {
+                cout ++ ;
                 this.TREE()
                 for (let i = 0; i < trees.getLength(); i++) {
                     let tre = trees.getChildren()[i]
