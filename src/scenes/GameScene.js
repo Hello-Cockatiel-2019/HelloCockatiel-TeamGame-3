@@ -24,7 +24,7 @@ class GameScene extends Phaser.Scene {
     preload() {
         this.load.image('sky', 'images/sky.jpg');
         this.load.image('platform', 'images/platform.png')
-        this.load.spritesheet('Player', '../../images/RightWalk.png', { frameWidth: 105, frameHeight: 533 })
+        this.load.spritesheet('Player', '../../images/RightWalk.png', { frameWidth: 104, frameHeight: 533 })
         this.load.image('Lightning', '../../images/lightning.png')
         this.load.image('Thunder', '../../images/thunder.png')
         this.load.image('Hole', '../../images/Hole.png')
