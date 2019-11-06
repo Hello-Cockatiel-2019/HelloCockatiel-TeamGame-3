@@ -8,6 +8,9 @@ let thunder
 let thunderGroup
 let keySpacebar
 let trees
+let hole1,hole2,hole3,hole4,hole5,hole6
+let cout = 0;
+let HoleGroup
 
 
 class GameScene extends Phaser.Scene{
@@ -31,6 +34,7 @@ class GameScene extends Phaser.Scene{
             this.load.audio("deadplant","../../images/deadplant.mp3")
             this.load.audio("stepsound","../../images/stepsound.mp3")
             this.load.audio("thundersound","../../images/thunder.ogg")
+            this.load.image('Hole', '../../images/Hole.png')
 }
     
     create(){
@@ -84,6 +88,30 @@ class GameScene extends Phaser.Scene{
         })
 
         this.physics.add.collider(lightningGroup, trees, this.hisplatform)
+
+        HoleGroup = this.physics.add.group()
+        this.physics.add.collider(player, HoleGroup, function () { console.log('test') })
+        event = this.time.addEvent({
+            callback: function () {
+                hole1 = this.add.image(318, 380, 'Hole').setScale(1).setSize(85, 30)
+                hole2 = this.add.image(550, 430, 'Hole').setScale(1).setSize(85, 30)
+                hole3 = this.add.image(820, 410, 'Hole').setScale(1).setSize(85, 30)
+                hole4 = this.add.image(185, 479, 'Hole').setScale(1).setSize(85, 30)
+                hole5 = this.add.image(715, 500, 'Hole').setScale(1).setSize(85, 30)
+                hole6 = this.add.image(418, 529, 'Hole').setScale(1).setSize(85, 30)
+                HoleGroup.add(hole1)
+                HoleGroup.add(hole2)
+                HoleGroup.add(hole3)
+                HoleGroup.add(hole4)
+                HoleGroup.add(hole5)
+                HoleGroup.add(hole6)
+            },
+            callbackScope: this,
+            loop: false,
+            pause: false,
+            repeat: 0
+        })
+
     }
     hisplatform(lightningGroup, trees) {
         lightningGroup.destroy()
@@ -91,6 +119,9 @@ class GameScene extends Phaser.Scene{
     }
           
     update(){
+        if (cout == 150){
+            this.scene.start('GameOverScene')
+        }
         if (keyA.isDown) {
             player.setVelocityX(-400)
             this.stepsound.play()
@@ -115,6 +146,7 @@ class GameScene extends Phaser.Scene{
          
        if(keySpacebar.isDown){
            this.TREE()
+           cout ++;
            for(let i = 0; i< trees.getLength(); i++){
                let tre = trees.getChildren()[i]
                if(tre.x < -50 ){

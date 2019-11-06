@@ -14,7 +14,6 @@ class GameOverScene extends Phaser.Scene{
     
     create(){
         this.add.image(0,0,'GameOverScene').setOrigin(0).setScale(1);
-        this.input.on('pointerdown',() => this.scene.start('PreloadScene'))
     }
 
     update(){
