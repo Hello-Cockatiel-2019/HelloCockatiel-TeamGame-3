@@ -24,7 +24,7 @@ class GameScene extends Phaser.Scene {
     preload() {
         this.load.image('sky', 'images/sky.jpg');
         this.load.image('platform', 'images/platform.png')
-        this.load.image('Player', '../../images/nong.png', { frameWidth: 384, frameHeight: 216 })
+        this.load.spritesheet('Player', '../../images/RightWalk.png', { frameWidth: 105, frameHeight: 533 })
         this.load.image('Lightning', '../../images/lightning.png')
         this.load.image('Thunder', '../../images/thunder.png')
         this.load.image('Hole', '../../images/Hole.png')
@@ -34,19 +34,26 @@ class GameScene extends Phaser.Scene {
 
     create() {
         platforms = this.physics.add.image(0, 0, 'platform').setOrigin(0.5).setScale(1).setSize(1800, 250).setCollideWorldBounds(true);
-
+        player = this.physics.add.sprite(10, 216, 'Player').setScale(0.2).setCollideWorldBounds(true);
         background = this.add.image(0, 0, 'sky').setOrigin(0).setScale(1)
-
-        // hole = this.add.image(300, 380, 'Hole').setScale(1).setSize(85, 30)
-        // hole = this.add.image(510, 410, 'Hole').setScale(1).setSize(85, 30)
-        // hole = this.add.image(780, 390, 'Hole').setScale(1).setSize(85, 30)
+         
+        this.anims.create({
+            key : 'playerAni',
+            frames : this.anims.generateFrameNumbers('Player' , {
+                start : 0,
+                end : 5
+            }),
+            framerate : 10,
+            repeat : -1       
+        })
+      
 
         thunder = this.add.image(650, -50, 'Thunder').setOrigin(0).setScale(0.5)
         thunder = this.add.image(450, -50, 'Thunder').setOrigin(0).setScale(0.5)
         thunder = this.add.image(10, -50, 'Thunder').setOrigin(0).setScale(0.5)
         thunder = this.add.image(250, -50, 'Thunder').setOrigin(0).setScale(0.5)
 
-        player = this.physics.add.image(384, 216, 'Player').setSize(320, ).setScale(0.15).setCollideWorldBounds(true);
+        
         keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
         keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
@@ -97,6 +104,9 @@ class GameScene extends Phaser.Scene {
     }
 
     update() {
+        player.anims.play('playerAni',true)
+
+
         {
             if (keyA.isDown) {
                 player.setVelocityX(-400)
