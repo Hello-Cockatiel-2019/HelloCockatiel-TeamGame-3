@@ -14,8 +14,9 @@ let hole1,hole2,hole3,hole4,hole5,hole6
 let trees
 let cout = 0;
 let HoleGroup
+var timer;
+var total = 0;
 class GameScene extends Phaser.Scene {
-
     constructor() {
         super({
             key: 'GameScene'
@@ -92,10 +93,14 @@ class GameScene extends Phaser.Scene {
             pause: false,
             repeat: 0
         })
+  
     }
+       
+
+
 
     update() {
-           if (cout == 6){
+           if (cout == 150){
                this.scene.start('GameOverScene')
            }
         {
@@ -113,8 +118,8 @@ class GameScene extends Phaser.Scene {
             if (keyW.isDown) {
                 player.setVelocityY(-400)
             } if (keySpacebar.isDown) {
-                cout ++ ;
                 this.TREE()
+                cout ++;
                 for (let i = 0; i < trees.getLength(); i++) {
                     let tre = trees.getChildren()[i]
                     if (tre.x < -50) {
