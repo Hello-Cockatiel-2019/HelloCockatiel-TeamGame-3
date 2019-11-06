@@ -22,7 +22,7 @@ class GameScene extends Phaser.Scene{
     }
 
     preload(){
-
+            //kk
             this.load.image('tree','images/tree2.png')
             this.load.image('sky','images/sky.jpg')
             this.load.image('platform','images/platform.png')
