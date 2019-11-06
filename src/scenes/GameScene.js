@@ -23,7 +23,7 @@ class GameScene extends Phaser.Scene {
     preload() {
         this.load.image('sky', 'images/sky.jpg');
         this.load.image('platform', 'images/platform.png')
-        this.load.spritesheet('Player', '../../images/walk.png', { frameWidth: 94, frameHeight: 234 })
+        this.load.spritesheet('Player', '../../images/RightWalk.png', { frameWidth: 105, frameHeight: 533 })
         this.load.image('Lightning', '../../images/lightning.png')
         this.load.image('Thunder', '../../images/thunder.png')
         this.load.image('Hole', '../../images/Hole.png')
@@ -41,7 +41,7 @@ class GameScene extends Phaser.Scene {
         thunder = this.add.image(450, -50, 'Thunder').setOrigin(0).setScale(0.5)
         thunder = this.add.image(10, -50, 'Thunder').setOrigin(0).setScale(0.5)
         thunder = this.add.image(250, -50, 'Thunder').setOrigin(0).setScale(0.5)
-        player = this.physics.add.sprite(10, 234, 'Player').setScale(0.4).setCollideWorldBounds(true);
+        player = this.physics.add.sprite(10, 234, 'Player').setScale(0.2).setCollideWorldBounds(true);
         keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
         keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
